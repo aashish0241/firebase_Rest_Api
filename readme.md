@@ -16,6 +16,7 @@ This is a Node.js and Express-based REST API for Firebase Authentication, integr
 7. [Security Considerations](#security-considerations)
 8. [Error Handling](#error-handling)
 9. [License](#license)
+10.[examples](#examples)
 
 ---
 
@@ -58,6 +59,8 @@ This backend service uses Firebase Authentication to manage user registration an
    ```bash
    git clone https://github.com/yourusername/firebase-rest-api-auth.git
    cd firebase-rest-api-auth
+---
+### API Endpoints
 
 Install dependencies:
 
@@ -74,6 +77,7 @@ env
 Copy code
 FIREBASE_ADMIN_SDK_PATH=./config/firebase-config.json
 JWT_SECRET=your_jwt_secret_key
+## Start Server
 Start the server:
 
 bash
@@ -81,12 +85,13 @@ Copy code
 npm start
 The server will be running at http://localhost:5000.
 
-API Endpoints
+## API Endpoints
 POST /register
 Description: Registers a new user with email, password, and phone number.
 
+###Examples
 Request Body:
-
+---
 json
 Copy code
 {
