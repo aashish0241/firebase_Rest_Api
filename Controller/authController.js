@@ -1,7 +1,4 @@
-const { db, admin } = require("../Config/firebase");
-const { hashPassword, verifyPassword } = require("../utils/passwordUtils");
-const { generateToken } = require("../utils/jwtUtils");
-const validateRegistration = require("../Utils/validation");
+const { validateRegistration, validateUpdate } = require("../Utils/validation");
 const authService = require("../Service/authService");
 
 // Registration
@@ -59,5 +56,5 @@ module.exports = {
   register: [validateRegistration, register],
   login,
   getProfile,
-  updateProfile,
+  updateProfile: [validateUpdate, updateProfile],
 };

@@ -91,7 +91,6 @@ const getUserService = async ({ userId }) => {
 const updateProfileService = async (userData, userId) => {
   const { name, email, phoneNumber } = userData;
   try {
-
     // Check for duplicate email or phone (excluding the current user)
     const userExists = await Promise.all([
       db.collection("Users").where("email", "==", email).get(),
@@ -133,7 +132,7 @@ const updateProfileService = async (userData, userId) => {
 };
 
 module.exports = {
-  registerService : validateRegistration , registerUser,
+  registerService,
   loginService,
   getUserService,
   updateProfileService,

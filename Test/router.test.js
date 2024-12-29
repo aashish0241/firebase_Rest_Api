@@ -5,18 +5,35 @@ const router = require("../Router/userRouter");
 // Mock Controllers
 jest.mock("../Controller/authController", () => ({
   register: jest.fn((req, res) => {
+    const { name, email, phoneNumber, password } = req.body;
+
+    // Simulate validation errors
+    if (!name || !email || !phoneNumber || !password) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      return res.status(400).json({ message: "Invalid email format" });
+    }
     if (req.body.email === "duplicate@example.com") {
       return res.status(400).json({ message: "Email already in use" });
     }
     return res.status(201).json({ message: "User registered successfully" });
   }),
   login: jest.fn((req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
     if (req.body.password !== "testpassword") {
       return res.status(401).json({ message: "Invalid credentials" });
     }
     return res.status(200).json({ token: "mocked-jwt-token" });
   }),
   updateProfile: jest.fn((req, res) => {
+    const { name, email, phoneNumber } = req.body;
+    if (!name || !email || !phoneNumber) {
+      return res.status(400).json({ message: "Invalid input fields" });
+    }
     if (req.body.email === "duplicate@example.com") {
       return res.status(400).json({ message: "Email already in use" });
     }
